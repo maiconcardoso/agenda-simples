@@ -9,18 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Dao;
+
 /**
  * Servlet implementation class Controller
  */
 @WebServlet(urlPatterns= {"/Controller", "/main" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	Dao dao = new Dao();
 
     /**
      * Default constructor. 
      */
     public Controller() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
