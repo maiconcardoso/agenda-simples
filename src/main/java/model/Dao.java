@@ -59,7 +59,7 @@ public class Dao {
 		}
 	}
 	
-	public ArrayList<JavaBeans> listaContatos() {
+	public ArrayList<JavaBeans> listarContatos() {
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
 		
 		String read = "select * from contatos order by nome";

@@ -37,7 +37,7 @@ public class Controller extends HttpServlet {
 
 	protected void contatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArrayList<JavaBeans> lista = dao.listaContatos();
+		ArrayList<JavaBeans> lista = dao.listarContatos();
 		for (int i=0; i<lista.size(); i++) {
 			System.out.println(lista.get(i).getIdcon());
 			System.out.println(lista.get(i).getNome());
