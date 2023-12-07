@@ -81,5 +81,24 @@ public class Dao {
 			return null;
 		}
 	}
+	
+	public void selecionarContato(JavaBeans contato) {
+		String read = "select * from contatos where idcon = ?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(read);
+			pst.setString(1, contato.getIdcon());
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				contato.setIdcon(rs.getString(1));
+				contato.setNome(rs.getString(2));
+				contato.setFone(rs.getString(3));
+				contato.setEmail(rs.getString(4));
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
 }

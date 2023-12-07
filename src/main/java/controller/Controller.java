@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Dao;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +30,8 @@ public class Controller extends HttpServlet {
 			contatos(request, response);
 		} else if (action.equals("/insert")) {
 			novoContato(request, response);
+		} else if (action.equals("/select")) {
+			listarContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -50,11 +52,23 @@ public class Controller extends HttpServlet {
 		contato.setNome(request.getParameter("nome"));
 		contato.setFone(request.getParameter("fone"));
 		contato.setEmail(request.getParameter("email"));
-		
+
 		dao.inserirContato(contato);
-		
+
 		// Redirecionar para página agenda.jsp
 		response.sendRedirect("main");
+	}
+	
+	protected void listarContato(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		String idcon = request.getParameter("idcon");
+		contato.setIdcon(idcon);
+		dao.selecionarContato(contato);
+		System.out.println(contato.getIdcon());
+		System.out.println(contato.getNome());
+		System.out.println(contato.getFone());
+		System.out.println(contato.getEmail());
+		
 	}
 
 }
