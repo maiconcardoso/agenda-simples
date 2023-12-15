@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Editar Contato</h1>
-	<form name="frmContato" action="">
+	<form name="frmContato" action="update">
 		<table>
 			<tr>
 				<td>
