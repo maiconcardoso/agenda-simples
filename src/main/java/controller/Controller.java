@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Dao;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,7 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
+		System.out.println(action);
 		if (action.equals("/main")) {
 			contatos(request, response);
 		} else if (action.equals("/insert")) {
@@ -34,6 +35,9 @@ public class Controller extends HttpServlet {
 			listarContato(request, response);
 		} else if (action.equals("/update")) {
 			editarContato(request, response);
+		}
+		else if (action.equals("/delete")) {
+			deletarContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -91,6 +95,21 @@ public class Controller extends HttpServlet {
 		dao.alterarContato(contato);
 		
 		// Redirecionar para o documento agenda.jsp (atualizando as alterações)
+		response.sendRedirect("main");
+	}
+	
+	protected void deletarContato(HttpServletRequest request, HttpServletResponse response) 
+	 throws ServletException, IOException {
+		// recebimento do contato a ser excluído
+		String idcon = request.getParameter("idcon");
+		
+		// setar a variável javabeans com o id que será excluído
+		contato.setIdcon(idcon);
+		
+		// executar o metodo deletarContato
+		dao.deletarContato(contato);
+		
+		// redirecionar para para main
 		response.sendRedirect("main");
 	}
 

@@ -124,5 +124,32 @@ public class Dao {
 			System.err.println(e);
 		}
 	}
+	
+	// Deletar contato
+	public void deletarContato(JavaBeans contato) {
+		String delete = "delete from contato where idcon=?";
+		try {
+			// Abrir a conexão do banco de dados
+			Connection con = conectar();
+			
+			// Preparar a query para execução no banco de dados
+			PreparedStatement pst = con.prepareStatement(delete);
+			
+			// Substituir os parâmetros (?) pelas variáveis JavaBeans
+			pst.setString(1, contato.getIdcon());
+			
+			// executar a query
+			pst.executeUpdate();
+			
+			// Fechar a conexão com o banco de dados
+			con.close();
+			
+			
+		} catch(Exception e) {
+			System.err.println(e);
+			e.printStackTrace();
+		}
+	}
+	
 
 }
