@@ -40,12 +40,16 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contat
 				<td><%=lista.get(i).getNome()%></td>
 				<td><%=lista.get(i).getFone()%></td>
 				<td><%=lista.get(i).getEmail()%></td>
-				<td><a href="select?idcon=<%=lista.get(i).getIdcon() %>" class="btn">Editar</a></td>
+				<td>
+					<a href="select?idcon=<%=lista.get(i).getIdcon() %>" class="btn">Editar</a>
+					<a href="javascript: confirmar(<%=lista.get(i).getIdcon() %>)" class="btn_delete">Excluir</a> 
+				</td>
 			</tr>
 			<%
 			}
 			%>
 		</tbody>
 	</table>
+	<script type="text/javascript" src="scripts/confirmador.js"></script>
 </body>
 </html>
