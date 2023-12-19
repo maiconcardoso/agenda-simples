@@ -127,7 +127,7 @@ public class Dao {
 	
 	// Deletar contato
 	public void deletarContato(JavaBeans contato) {
-		String delete = "delete from contato where idcon=?";
+		String delete = "delete from contatos where idcon=?";
 		try {
 			// Abrir a conexão do banco de dados
 			Connection con = conectar();
